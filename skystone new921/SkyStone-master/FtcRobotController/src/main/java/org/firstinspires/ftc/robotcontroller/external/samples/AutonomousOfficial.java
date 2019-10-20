@@ -45,28 +45,39 @@ public class AutonomousOfficial extends OpMode {
     private DcMotor leftMotor = null;
     private DcMotor linearSlideMotor = null;
     private DcMotor rightMotor = null;
+    private Servo pitch_clamp = null;
     private ElapsedTime runtime = new ElapsedTime();
 
-
     public void init() {
+
+        pitch_clamp = hardwareMap.get(Servo.class, "pitch_clamp");
         leftMotor = hardwareMap.dcMotor.get("left_drive");
         rightMotor = hardwareMap.dcMotor.get("right_drive");
         colorSensor = hardwareMap.colorSensor.get("color");
+        pitch_clamp.setPosition(0.5);
     }
 
     public void loop() {
-        double throttle = 5;
-        double turn = 5;
-        double leftspeed = throttle + turn;
-        while (runtime.seconds() < 1.9) {
-            leftMotor.setPower(leftspeed);
-rightMotor.setPower(-10);
+        runtime.startTime();
+
+     //   double throttle = 5;
+       // double turn = 5;
+
+        //double leftspeed = throttle + turn;
+        while (runtime.seconds() < 2.6) {
+            leftMotor.setPower(10);
+            rightMotor.setPower(-10);
         }
         leftMotor.setPower(0);
         rightMotor.setPower(0);
-
-
-
+        pitch_clamp.setPosition(0);
+        runtime.reset();
+        while (runtime.seconds() <1.5) {
+            leftMotor.setPower(-10);
+            rightMotor.setPower(10);
+        }
+        leftMotor.setPower(0);
+        rightMotor.setPower(0);
         telemetry.addData("Status"," Red Color Value  "+ colorSensor.red());
         telemetry.addData("Status"," Blue Color Value  "+ colorSensor.blue());
         telemetry.addData("Status"," Green Color Value  "+ colorSensor.green());
