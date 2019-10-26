@@ -26,7 +26,7 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+/*
 package org.firstinspires.ftc.robotcontroller.external.samples;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -56,14 +56,14 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
-
+/*
 @Autonomous(name="Pushbot: Auto Drive By Time", group="Pushbot")
 @Disabled
 
 public class AutoBlueBlock extends LinearOpMode {
 
     /* Declare OpMode members. */
-    private DcMotor leftMotor = null;
+    /*private DcMotor leftMotor = null;
     private DcMotor linearSlideMotor = null;
     private DcMotor rightMotor = null;
     private Servo pitch_clamp = null;
@@ -84,7 +84,7 @@ public class AutoBlueBlock extends LinearOpMode {
          * Initialize the drive system variables.
          * The init() method of the hardware class does all the work here
          */
-        robot.init(hardwareMap);
+        /*robot.init(hardwareMap);
         telemetry.addData("Status", "Ready to run");    //
         telemetry.update();
         waitForStart();
@@ -117,3 +117,4 @@ public class AutoBlueBlock extends LinearOpMode {
         sleep(1000);
     }
 }
+*/

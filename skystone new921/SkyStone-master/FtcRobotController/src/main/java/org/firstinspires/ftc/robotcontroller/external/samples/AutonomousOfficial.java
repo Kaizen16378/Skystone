@@ -59,25 +59,38 @@ public class AutonomousOfficial extends OpMode {
 
     public void loop() {
         runtime.startTime();
-
      //   double throttle = 5;
        // double turn = 5;
 
         //double leftspeed = throttle + turn;
         while (runtime.seconds() < 2.6) {
             leftMotor.setPower(10);
-            rightMotor.setPower(-10);
+            rightMotor.setPower(-9.9);
         }
         leftMotor.setPower(0);
         rightMotor.setPower(0);
         pitch_clamp.setPosition(0);
-        runtime.reset();
-        while (runtime.seconds() <1.5) {
+        while (runtime.seconds() < 4.1) {
             leftMotor.setPower(-10);
-            rightMotor.setPower(10);
+            rightMotor.setPower(9.85);
         }
         leftMotor.setPower(0);
         rightMotor.setPower(0);
+        while (runtime.seconds() < 4.48) {
+            leftMotor.setPower(-10);
+            rightMotor.setPower(-10);
+        }
+        while(runtime.seconds()<6.98){
+            leftMotor.setPower(10);
+            rightMotor.setPower(-9.9);
+        }
+
+        pitch_clamp.setPosition(0.5);
+        while(runtime.seconds()<8.48){
+            leftMotor.setPower(-10);
+            rightMotor.setPower(9.85);
+        }
+stop();
         telemetry.addData("Status"," Red Color Value  "+ colorSensor.red());
         telemetry.addData("Status"," Blue Color Value  "+ colorSensor.blue());
         telemetry.addData("Status"," Green Color Value  "+ colorSensor.green());
