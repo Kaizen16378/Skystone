@@ -84,33 +84,19 @@ public class PushbotTeleopPOV_Linear extends OpMode {
     public void loop() {
         double throttle = gamepad1.left_stick_y;
         double turn = gamepad1.right_stick_x;
-        double backslidespeed = gamepad1.left_trigger;
-        double frontslidespeed = gamepad1.right_trigger;
+        double backslidespeed = gamepad2.left_trigger;
+        double frontslidespeed = gamepad2.right_trigger;
         double leftspeed = throttle - turn;
         double rightspeed = throttle + turn;
         leftMotor.setPower(leftspeed);
-        linearSlideMotor.setPower(backslidespeed/2.5);
+        linearSlideMotor.setPower(backslidespeed / 2.5);
         rightMotor.setPower(rightspeed);
         telemetry.addData("Status", "Run Time: " + runtime.toString());
-        if (gamepad1.a) {
+        if (gamepad2.a) {
             pitch_clamp.setPosition(0);
-        } else if (gamepad1.b) {
+        } else if (gamepad2.b) {
             pitch_clamp.setPosition(0.5);
 
-
-        }
-        if (gamepad1.y) {
-            yaw_clamp.setPosition(0.5);
-        } else if (gamepad1.x) {
-            yaw_clamp.setPosition(-.1);
-        }
-
-
-        if (gamepad1.right_bumper) {
-            roll_clamp.setPosition(.98);
-        } else if (gamepad1.left_bumper) {
-            roll_clamp.setPosition(.5);
-            //added 0.5
 
         }
     }

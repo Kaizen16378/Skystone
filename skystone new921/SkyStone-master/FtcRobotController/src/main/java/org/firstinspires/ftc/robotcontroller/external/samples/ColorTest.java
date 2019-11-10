@@ -36,12 +36,12 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Pushbot: Auto Drive By Encoder", group="Pushbot")
+@Autonomous(name="Color Test", group="Pushbot")
 //@Disabled
 
 
-public class AutonomousOfficial extends OpMode {
-    ColorSensor colorSensor;
+public class ColorTest extends OpMode {
+    com.qualcomm.robotcore.hardware.ColorSensor colorSensor;
     private DcMotor leftMotor = null;
     private DcMotor linearSlideMotor = null;
     private DcMotor rightMotor = null;
@@ -54,49 +54,26 @@ public class AutonomousOfficial extends OpMode {
         leftMotor = hardwareMap.dcMotor.get("left_drive");
         rightMotor = hardwareMap.dcMotor.get("right_drive");
         colorSensor = hardwareMap.colorSensor.get("color");
-        pitch_clamp.setPosition(0.5);
+
     }
 
     public void loop() {
-        runtime.startTime();
-     //   double throttle = 5;
-       // double turn = 5;
+leftMotor.setPower(0.5);
+rightMotor.setPower(-0.5);
+if (colorSensor.red() > 500){
+    leftMotor.setPower(0);
+    rightMotor.setPower(0);
+    requestOpModeStop();
+}
 
-        //double leftspeed = throttle + turn;
-        while (runtime.seconds() < 2.6) {
-            leftMotor.setPower(10);
-            rightMotor.setPower(-9.9);
-        }
-        leftMotor.setPower(0);
-        rightMotor.setPower(0);
-        pitch_clamp.setPosition(0);
-        while (runtime.seconds() < 4.1) {
-            leftMotor.setPower(-10);
-            rightMotor.setPower(9.85);
-        }
-        leftMotor.setPower(0);
-        rightMotor.setPower(0);
-        while (runtime.seconds() < 4.48) {
-            leftMotor.setPower(-10);
-            rightMotor.setPower(-10);
-        }
-        while(runtime.seconds()<6.98){
-            leftMotor.setPower(10);
-            rightMotor.setPower(-9.9);
-        }
 
-        pitch_clamp.setPosition(0.5);
-        while(runtime.seconds()<8.48){
-            leftMotor.setPower(-10);
-            rightMotor.setPower(9.85);
-        }
-stop();
-        telemetry.addData("Status"," Red Color Value  "+ colorSensor.red());
-        telemetry.addData("Status"," Blue Color Value  "+ colorSensor.blue());
-        telemetry.addData("Status"," Green Color Value  "+ colorSensor.green());
-        telemetry.addData("Status"," Red Color Value  "+ colorSensor.argb());
+        telemetry.addData("Status", " Red Color Value  " + colorSensor.red());
+        telemetry.addData("Status", " Blue Color Value  " + colorSensor.blue());
+        telemetry.addData("Status", " Green Color Value  " + colorSensor.green());
+        telemetry.addData("Status", " Red Color Value  " + colorSensor.argb());
         telemetry.addData("Status", "Run Time: " + runtime.toString());
 
 
-            }
-        }
+    }
+}
+

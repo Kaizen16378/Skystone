@@ -27,10 +27,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.robotcontroller.external.samples;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -58,11 +57,11 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="KaizenAutoBlueBlockSide", group="Pushbot")
+@Autonomous(name="AutoBlueBlock", group="Pushbot")
 //@Disabled
-public class KaizenAutoDriveByTime_Linear extends LinearOpMode {
+public class AutoRedBlock extends LinearOpMode {
 
-    ColorSensor colorSensor;
+    private ColorSensor colorSensor;
     private DcMotor leftMotor = null;
     private DcMotor linearSlideMotor = null;
     private DcMotor rightMotor = null;
@@ -96,7 +95,7 @@ public class KaizenAutoDriveByTime_Linear extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-//double leftspeed = throttle + turn;
+//go straight
         while (runtime.seconds() < 2.6) {
             leftMotor.setPower(10);
             rightMotor.setPower(-9.9);
@@ -104,26 +103,39 @@ public class KaizenAutoDriveByTime_Linear extends LinearOpMode {
         leftMotor.setPower(0);
         rightMotor.setPower(0);
         pitch_clamp.setPosition(0);
+//go back
         while (runtime.seconds() < 4.1) {
             leftMotor.setPower(-10);
             rightMotor.setPower(9.85);
         }
         leftMotor.setPower(0);
         rightMotor.setPower(0);
-        while (runtime.seconds() < 4.48) {
-            leftMotor.setPower(-11);
-            rightMotor.setPower(-10);
+//turn left
+        while (runtime.seconds() < 4.6) {
+            leftMotor.setPower(10);
+            rightMotor.setPower(11);
         }
         while(runtime.seconds()<6.98){
-            leftMotor.setPower(10);
-            rightMotor.setPower(-9.9);
+            leftMotor.setPower(9);
+            rightMotor.setPower(-10);
         }
 
         pitch_clamp.setPosition(0.5);
-        while(runtime.seconds()<8.48){
-            leftMotor.setPower(-10);
-            rightMotor.setPower(9.95);
+
+        //stopping at the baige lin
+        /*
+        if (colorSensor.red() > 475){
+            leftMotor.setPower(0);
+            rightMotor.setPower(0);
+            requestOpModeStop();
         }
+        */
+    //stopping at the red line
+        if (colorSensor.red() > 600 && colorSensor.blue() > 400){
+            leftMotor.setPower(0);
+            rightMotor.setPower(0);
+        }
+
         telemetry.addData("Path", "Complete");
         telemetry.update();
         sleep(1000);

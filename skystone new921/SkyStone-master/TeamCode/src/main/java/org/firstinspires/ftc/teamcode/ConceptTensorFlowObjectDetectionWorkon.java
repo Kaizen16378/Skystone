@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.robotcontroller.external.samples;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -31,6 +31,19 @@ public class ConceptTensorFlowObjectDetectionWorkon {
         private static final String TFOD_MODEL_ASSET = "Skystone.tflite";
         private static final String LABEL_FIRST_ELEMENT = "Stone";
         private static final String LABEL_SECOND_ELEMENT = "Skystone";
+
+        /*
+         * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
+         * 'parameters.vuforiaLicenseKey' is initialized is for illustration only, and will not function.
+         * A Vuforia 'Development' license key, can be obtained free of charge from the Vuforia developer
+         * web site at https://developer.vuforia.com/license-manager.
+         *
+         * Vuforia license keys are always 380 characters long, and look as if they contain mostly
+         * random data. As an example, here is a example of a fragment of a valid key:
+         *      ... yIgIzTqZ4mWjk9wd3cZO9T1axEqzuhxoGlfOOI2dRzKS4T0hQ8kT ...
+         * Once you've obtained a license key, copy the string from the Vuforia web site
+         * and paste it in to your code on the next line, between the double quotes.
+         */
         private static final String VUFORIA_KEY =
                 "AehCZTv/////AAABmUhMzNbnzEelvFLIel9urIEkVcHYRLEiIZq0DwtI7TDv25qqvERT0gDrJGywb7Wnx47oSeRFRltdv57/Yl2BeqhHnOBEvlntV3wKcjsWRPmbIh19nQqZhHB48X6NJxppL0YtyykDXFtr9gpfXMWPbilG6hMyTCI2M8zarB3XuIYPJ0/RP2xsARYJ+T/tl7GCxmnKABMPFFMG/Cb9QC2iBt+1hw56L5/DKfQar1vc7m3vhFXHNAxxnfT1bw4DBnjrs4T0elgdbHcezOi6ugHPyQotUJFoRPvWkat/GL2bevIPWfseoeGpgblaM1NEWARuuFB+3fYt4e7BWv0WVRwZfLKgWZVHhq5/TzmGDerDKhup";
 
