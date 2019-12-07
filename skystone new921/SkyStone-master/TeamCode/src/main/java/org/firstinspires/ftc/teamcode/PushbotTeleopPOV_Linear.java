@@ -78,17 +78,26 @@ public class PushbotTeleopPOV_Linear extends OpMode
         {
             extendMotor.setPower(-0.5);
         }
-//********************GRABBING BLOCK-need to find right values
+//********************GRABBING BLOCK
         if (gamepad2.a) {
             grabber.setPosition(0);
         } else if (gamepad2.b) {
             grabber.setPosition(0.5);
         }
 //********************TILTING GRABBER-need to find right value
-        if (gamepad2.x) {
-            tilt.setPosition(0);
-        } else if (gamepad2.y) {
-            tilt.setPosition(0.5);
-        }
+
+          double pos = tilt.getPosition();
+            while (gamepad2.right_trigger > 0.3)
+            {
+                    pos = (pos + 0.001);
+                    tilt.setPosition(pos);
+                telemetry.addData("Status", "servo pos " + tilt.getPosition());
+            }
+            while (gamepad2.left_trigger > 0.3)
+            {
+                   pos = (pos - 0.001);
+                   tilt.setPosition(pos);
+                telemetry.addData("Status", "servo pos " + tilt.getPosition());
+            }
     }
 }
